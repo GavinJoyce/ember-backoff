@@ -18,31 +18,29 @@ export default Em.Route.extend({
 
 Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 
-## Outstanding Improvements
+## Installation
+
+`npm install ember-backoff`
+
+## Outstanding Tasks
 
  * [ ] Better tests using sinon
  * [ ] Support for Ember Data and Ember Model
 
 Pull requests are very welcome, thanks.
 
-## Installation
+## Development Instructions
 
 * `git clone` this repository
 * `npm install`
 * `bower install`
 
-## Running
+### Running
 
 * `ember server`
 * Visit your app at http://localhost:4200.
 
-## Running Tests
+### Running Tests
 
 * `ember test`
 * `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
