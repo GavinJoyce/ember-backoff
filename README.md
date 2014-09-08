@@ -25,7 +25,8 @@ Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 ## Outstanding Tasks
 
  * [ ] Better tests using sinon
- * [ ] Support for Ember Data and Ember Model
+ * [ ] Other strategies: simply retry, fibonacci...
+ * [ ] High level support for Ember Data and Ember Model
 
 Pull requests are very welcome, thanks.
 
