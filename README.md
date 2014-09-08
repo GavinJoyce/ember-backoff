@@ -10,7 +10,7 @@ export default Em.Route.extend({
   model: function(params) {
     retryWithBackoff(function() {
       return this.store.find('user', 142857); //return any promise here
-    }, 5, 100); //retry 5 times waiting 100ms, 200ms, 400ms, 800ms, 1600ms between tries
+    }, 5, 100); //retry 5 times: 100ms, 200ms, 400ms, 800ms, 1600ms between tries
   }
 });
 
