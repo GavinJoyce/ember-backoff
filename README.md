@@ -40,6 +40,8 @@ Pull requests are very welcome, thanks.
 * `ember server`
 * Visit your app at http://localhost:4200.
 
+![sample application](https://cloud.githubusercontent.com/assets/2526/4193579/ed8937dc-37a2-11e4-93e6-3b20b53fb315.png)
+
 ### Running Tests
 
 * `ember test`
