@@ -6,16 +6,24 @@ Simple exponential backoff strategy for Ember.js promises
 
 import retryWithBackoff from 'ember-backoff/retry-with-backoff';
 
-retryWithBackoff(function() {
-  return this.store.find('user', 142857); //return any promise
-}, 5, 100); //retry 5 times waiting 100ms, 200ms, 400ms, 800ms, 1600ms between tries
+export default Em.Route.extend({
+  model: function(params) {
+    retryWithBackoff(function() {
+      return this.store.find('user', 142857); //return any promise here
+    }, 5, 100); //retry 5 times waiting 100ms, 200ms, 400ms, 800ms, 1600ms between tries
+  }
+});
 
 ```
 
-## TODO
+Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
+
+## Outstanding Improvements
 
  * [ ] Better tests using sinon
  * [ ] Support for Ember Data and Ember Model
+
+Pull requests are very welcome, thanks.
 
 ## Installation
 
