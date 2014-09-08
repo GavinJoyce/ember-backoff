@@ -1,3 +1,19 @@
-<h2 id='title'>Welcome to Ember.js</h2>
+<h1 id='title'>ember-backoff</h1>
 
-{{outlet}}
+<a href="https://github.com/GavinJoyce/ember-backoff">https://github.com/GavinJoyce/ember-backoff</a>
+
+<hr />
+<br />
+<br />
+
+
+<button {{action 'flakeyPromiseWithBackoff'}} {{bind-attr disabled=isLoading}}>Try a 80% flakey promise</button>
+
+{{#if isLoading}}
+  trying....
+{{/if}}
+
+<hr />
+{{#each item in content}}
+  {{item}}
+{{/each}}

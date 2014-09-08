@@ -1,4 +1,4 @@
-# Ember-backoff
+# ember-backoff
 
 Simple exponential backoff strategy for Ember.js promises
 
@@ -20,7 +20,7 @@ Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 
 ## Installation
 
-`npm install ember-backoff`
+`npm install ember-backoff --save-dev`
 
 ## Outstanding Tasks
 
