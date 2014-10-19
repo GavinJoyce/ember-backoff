@@ -1,5 +1,7 @@
 # ember-backoff
 
+[![Build Status](https://travis-ci.org/GavinJoyce/ember-backoff.svg)](https://travis-ci.org/GavinJoyce/ember-backoff)
+
 Simple exponential backoff strategy for Ember.js promises
 
 ```javascript
