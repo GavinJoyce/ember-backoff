@@ -14,7 +14,7 @@ export default Em.ArrayController.extend({
         return self.flakeyPromise();
       }, 20, 10).then(function() {
         self.set('isLoading', false);
-      }, function(reason) {
+      }, function() {
         self.pushObject('[retry failed after 10 tries]');
         self.set('isLoading', false);
       });
