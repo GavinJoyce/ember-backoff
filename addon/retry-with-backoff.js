@@ -1,5 +1,5 @@
 import Em from 'ember';
-import delay from './delay';
+import delay from 'ember-delay/delay';
 
 var retryWithBackoff = function(callback, retryCountBeforeFailure, waitInMilliseconds) {
   if(Em.empty(retryCountBeforeFailure)) {
