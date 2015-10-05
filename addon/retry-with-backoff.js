@@ -26,7 +26,7 @@ export default function(callback, retryCountBeforeFailure, waitInMilliseconds){
     retryCountBeforeFailure = 5;
   }
   waitInMilliseconds = waitInMilliseconds || 250;
-  
+
   return new Em.RSVP.Promise(function(resolve, reject) {
     retryWithBackoff(
       callback, 
@@ -36,4 +36,4 @@ export default function(callback, retryCountBeforeFailure, waitInMilliseconds){
       reject
     );
   });
-};
+}
