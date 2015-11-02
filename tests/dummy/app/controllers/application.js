@@ -1,10 +1,10 @@
 import Em from 'ember';
 import retryWithBackoff from 'ember-backoff/retry-with-backoff';
 
-export default Em.ArrayController.extend({
-  setup: function() {
+export default Em.Controller.extend({
+  init: function() {
     this.set('content', Em.A());
-  }.on('init'),
+  },
   actions: {
     flakeyPromiseWithBackoff: function() {
       var self = this;
@@ -25,10 +25,10 @@ export default Em.ArrayController.extend({
 
     return new Em.RSVP.Promise(function(resolve, reject) {
       if(Math.random() <= 0.80) {
-        self.pushObject('[failed]');
+        self.get('content').pushObject('[failed]');
         reject(); //will fail 80%
       } else {
-        self.pushObject('[succeeded]');
+        self.get('content').pushObject('[succeeded]');
         resolve(); //will succeed 20%
       }
     });
