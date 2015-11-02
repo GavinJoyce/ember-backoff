@@ -22,7 +22,7 @@ Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 
 ## Installation
 
-`npm install ember-backoff --save-dev`
+`npm install ember-backoff --save`
 
 ## Outstanding Tasks
 
