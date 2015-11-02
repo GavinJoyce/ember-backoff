@@ -1,19 +1,22 @@
 <h1 id='title'>ember-backoff</h1>
 
-<a href="https://github.com/GavinJoyce/ember-backoff">https://github.com/GavinJoyce/ember-backoff</a>
+<a href="https://github.com/GavinJoyce/ember-backoff">
+  https://github.com/GavinJoyce/ember-backoff
+</a>
 
 <hr />
 <br />
 <br />
 
-
-<button {{action 'flakeyPromiseWithBackoff'}} {{bind-attr disabled=isLoading}}>Try a 80% flakey promise</button>
+<button {{action 'flakeyPromiseWithBackoff'}} disabled={{isLoading}}>
+  Try a 80% flakey promise
+</button>
 
 {{#if isLoading}}
   trying....
 {{/if}}
 
 <hr />
-{{#each item in content}}
+{{#each content as |item|}}
   {{item}}
 {{/each}}

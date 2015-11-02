@@ -1,15 +1,13 @@
-import retryWithBackoff from 'ember-backoff/retry-with-backoff';
 import Em from 'ember';
+import retryWithBackoff from 'ember-backoff/retry-with-backoff';
 import { test } from 'ember-qunit';
 
-module('retry-with-backoff');
-
-asyncTest('it returns a promise which resolves', function() {
-  expect(1);
+test('it returns a promise which resolves', function(assert) {
+  assert.expect(1);
 
   //TODO: GJ: better tests with sinon
   var count = 0;
-  retryWithBackoff(function() {
+  return retryWithBackoff(function() {
     return new Em.RSVP.Promise(function(resolve, reject) {
       count++;
       if(count < 2) {
@@ -19,7 +17,6 @@ asyncTest('it returns a promise which resolves', function() {
       }
     });
   }).then(function() {
-    ok(true);
-    start();
+    assert.ok(true);
   });
 });
