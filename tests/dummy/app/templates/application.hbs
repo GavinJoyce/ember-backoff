@@ -11,6 +11,13 @@
 <button {{action 'flakeyPromiseWithBackoff'}} disabled={{isLoading}}>
   Try a 80% flakey promise
 </button>
+<br />
+Backoff strategy:
+<select onchange={{action 'setStrategy' value="target.value"}}>
+  {{#each strategies as |strategy|}}
+    <option value={{strategy.name}} selected={{strategy.selected}}>{{strategy.name}}</option>
+  {{/each}}
+</select>
 
 {{#if isLoading}}
   trying....

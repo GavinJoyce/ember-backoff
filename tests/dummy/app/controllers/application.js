@@ -1,7 +1,29 @@
 import Em from 'ember';
 import retryWithBackoff from 'ember-backoff/retry-with-backoff';
+import exponential from 'ember-backoff/strategy/exponential';
+import linear from 'ember-backoff/strategy/linear';
+import constant from 'ember-backoff/strategy/constant';
+
+var strategyNames = ['exponential', 'linear', 'constant'];
 
 export default Em.Controller.extend({
+  selectedStrategy: 'exponential',
+  strategies: Em.computed('selectedStrategy', function() {
+    var selectedStrategy = this.get('selectedStrategy');
+    return strategyNames.map(
+      name => ({name, selected: (name === selectedStrategy)})
+    );
+  }),
+  selectedStrategyFn: Em.computed('selectedStrategy', function() {
+    switch (this.get('selectedStrategy')) {
+      case 'constant':
+        return constant;
+      case 'linear':
+        return linear;
+      default:
+        return exponential;
+    }
+  }),
   init: function() {
     this.set('content', Em.A());
   },
@@ -12,12 +34,15 @@ export default Em.Controller.extend({
 
       retryWithBackoff(function() {
         return self.flakeyPromise();
-      }, 20, 10).then(function() {
+      }, 10,  20, this.get('selectedStrategyFn')).then(function() {
         self.set('isLoading', false);
       }, function() {
-        self.pushObject('[retry failed after 10 tries]');
+        self.get('content').pushObject('[retry failed after 10 tries]');
         self.set('isLoading', false);
       });
+    },
+    setStrategy: function(strategy) {
+      this.set('selectedStrategy', strategy);
     }
   },
   flakeyPromise: function() {

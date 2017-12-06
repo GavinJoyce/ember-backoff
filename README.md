@@ -18,6 +18,46 @@ export default Em.Route.extend({
 
 ```
 
+Or using one of the supplied strategies
+
+```javascript
+
+import retryWithBackoff from 'ember-backoff/retry-with-backoff';
+import constant from 'ember-backoff/strategy/constant';
+
+export default Em.Route.extend({
+  model: function(params) {
+    retryWithBackoff(function() {
+      // poll until record exists
+      return this.store.find('completedJob', 22);
+    }, 10, 1000, constant); //retry 10 times: always 1s between tries
+  }
+});
+
+```
+
+Or you own custom strategy
+
+```javascript
+
+import retryWithBackoff from 'ember-backoff/retry-with-backoff';
+import exponential from 'ember-backoff/strategy/exponential';
+
+function exponentialWithDither(initialWait, retryCount) {
+  var ditherFrac = Math.random() * 10;
+  return (1 + ditherFrac) * exponential(initialWait, retryCount);
+}
+
+export default Em.Route.extend({
+  model: function(params) {
+    retryWithBackoff(function() {
+      return this.store.query('thunderindHerd');
+    }, 10, 1000, exponentialWithDither);
+  }
+});
+
+```
+
 Questions? Ping me [@gavinjoyce](https://twitter.com/gavinjoyce)
 
 ## Installation
