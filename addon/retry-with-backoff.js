@@ -1,23 +1,22 @@
-import Em from 'ember';
 import delay from './delay';
+import exponentialStrategy from './strategy/exponential';
 
-var retryWithBackoff = function(callback, retryCountBeforeFailure, waitInMilliseconds) {
-  if(Em.isEmpty(retryCountBeforeFailure)) {
-    retryCountBeforeFailure = 5;
+function retryWithBackoff(callback, retryCountBeforeFailure, initialWaitInMilliseconds, backoffStrategy) {
+  retryCountBeforeFailure = retryCountBeforeFailure || 5;
+  initialWaitInMilliseconds = initialWaitInMilliseconds || 250;
+  backoffStrategy = backoffStrategy || exponentialStrategy;
+
+  var _retryWithCallback = function(callback, retryCount) {
+    return callback().catch(function(reason) {
+      if (retryCount < retryCountBeforeFailure) {
+        return delay(backoffStrategy(initialWaitInMilliseconds, retryCount)).then(function() {
+          return _retryWithCallback(callback, ++retryCount);
+        });
+      }
+      throw reason;
+    });
   }
-  waitInMilliseconds = waitInMilliseconds || 250;
-
-  return callback().catch(function(reason) {
-    if (retryCountBeforeFailure-- > 1) {
-      waitInMilliseconds = waitInMilliseconds * 2;
-
-      return delay(waitInMilliseconds).then(function() {
-        return retryWithBackoff(callback, retryCountBeforeFailure, waitInMilliseconds);
-      });
-    }
-
-    throw reason;
-  });
-};
+  return _retryWithCallback(callback, 0);
+}
 
 export default retryWithBackoff;
