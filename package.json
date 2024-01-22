@@ -1,6 +1,6 @@
 {
   "name": "ember-backoff",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Exponential backoff and retry for rsvp.js promises",
   "keywords": [
     "ember-addon"
